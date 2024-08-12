@@ -6,10 +6,10 @@ const router = express.Router();
 
 //routes
 
-//MEthod - POST
+//Method - POST
 router.post("/add-bills", addBillsController);
 
-//MEthod - GET
+//Method - GET
 router.get("/get-bills", getBillsController);
 
 export default router;

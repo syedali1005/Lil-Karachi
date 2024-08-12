@@ -91,7 +91,7 @@ const Bills = () => {
                 <p>
                   Customer Name: <b>{selectedBill.customerName}</b>
                   <br />
-                  Phone No: <b>{selectedBill.customerNumber}</b>
+                  Table No: <b>{selectedBill.customerNumber}</b>
                   <br />
                   Date:{" "}
                   <b>{new Date(selectedBill.date).toLocaleDateString()}</b>

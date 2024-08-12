@@ -32,12 +32,12 @@ const billSchema = mongoose.Schema(
     },
     date: {
       type: Date,
-      default: Date.now, // Correct default date function
+      default: Date.now, 
     },
   },
-  { timestamps: true } // Fixed typo: should be 'timestamps'
+  { timestamps: true } 
 );
 
-const Bills = mongoose.model("Bills", billSchema); // Model name should be capitalized
+const Bills = mongoose.model("Bills", billSchema); 
 
 export default Bills;
