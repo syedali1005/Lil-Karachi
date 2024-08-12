@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import DefaultLayout from "./../components/DefaultLayout";
 import axios from "axios";
-import { Row, Col } from "antd";
+import { Row, Col, Button, Typography, Image } from "antd";
 import { useDispatch } from "react-redux";
 import ItemList from "../components/ItemList";
+
+const { Title } = Typography;
 
 const Home = () => {
   const [itemsData, setItemsData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("drinks");
-  
+
   const categories = [
     {
       name: "drinks",
@@ -23,10 +25,9 @@ const Home = () => {
       imageUrl: "https://cdn-icons-png.flaticon.com/512/1471/1471262.png",
     },
   ];
-  
+
   const dispatch = useDispatch();
 
-  //useEffect
   useEffect(() => {
     const getAllItems = async () => {
       try {
@@ -34,9 +35,9 @@ const Home = () => {
         const { data } = await axios.get("/api/items/get-item");
         setItemsData(data);
         dispatch({ type: "HIDE_LOADING" });
-        console.log(data);
       } catch (error) {
         console.log(error);
+        dispatch({ type: "HIDE_LOADING" });
       }
     };
     getAllItems();
@@ -44,30 +45,34 @@ const Home = () => {
 
   return (
     <DefaultLayout>
-      <div className="d-flex">
+      <div className="category-container">
         {categories.map((category) => (
-          <div
+          <Button
             key={category.name}
-            className={`d-flex category ${
-              selectedCategory === category.name && "category-active"
+            className={`category-button ${
+              selectedCategory === category.name ? "category-button-active" : ""
             }`}
             onClick={() => setSelectedCategory(category.name)}
           >
-            <h4>{category.name}</h4>
-            <img
+            <Image
               src={category.imageUrl}
               alt={category.name}
-              height="40"
-              width="60"
+              preview={false}
+              width={40}
+              height={40}
+              style={{ marginRight: 10 }}
             />
-          </div>
+            <Title level={4} style={{ margin: 0 }}>
+              {category.name}
+            </Title>
+          </Button>
         ))}
       </div>
-      <Row>
+      <Row gutter={[16, 16]} style={{ marginTop: 20 }}>
         {itemsData
           .filter((i) => i.category === selectedCategory)
           .map((item) => (
-            <Col key={item._id} xs={24} lg={6} md={12} sm={6}>
+            <Col key={item._id} xs={24} sm={12} md={8} lg={6}>
               <ItemList item={item} />
             </Col>
           ))}

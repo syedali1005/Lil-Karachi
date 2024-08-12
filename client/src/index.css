@@ -1,73 +1,69 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 body {
-  font-family: "Poppins";
-}
-.item-button button {
-  margin-top: 20px;
-  width: 200px;
-  background-color: rgb(34, 78, 9);
-  color: white;
-}
-.spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-}
-.spinner-border {
-  height: 100px;
-  width: 100px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
 }
 
-.category {
-  border: 2px solid gray;
-  margin-right: 25px;
-  margin-bottom: 10px;
-  padding: 10px;
-  cursor: pointer;
+.category-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
 }
 
-.category img {
-  margin-left: 10px;
-}
-
-.category-active {
-  border: 2px solid green;
-  background-color: rgba(128, 128, 128, 0.501);
-}
-
-/* ========= register page ================ */
-
-.register {
+.category-button {
   display: flex;
   align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 5px;
 }
 
-.register input {
-  width: 400px !important;
+.category-button-active {
+  background-color: #1890ff;
+  color: #ffffff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.regsiter-form {
-  background-color: rgba(98, 197, 251, 0.463);
-  padding: 20px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+.category-button img {
+  margin-right: 12px;
 }
 
-.regsiter-form h1 {
-  text-align: center;
-  background-color: rgb(2, 2, 75);
-  color: white;
-  padding: 10px;
+.item-list {
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.regsiter-form h3 {
-  color: rgb(4, 4, 113);
-  text-align: center;
+.item-list:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.ant-btn {
+  border-radius: 12px;
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
+  .category-button {
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  .item-list {
+    margin: 0 auto;
+  }
 }
