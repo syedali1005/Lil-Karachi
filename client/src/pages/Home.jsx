@@ -24,6 +24,18 @@ const Home = () => {
       name: "noodles",
       imageUrl: "https://cdn-icons-png.flaticon.com/512/1471/1471262.png",
     },
+    {
+      name: "paratha",
+      imageUrl: "/roti-canai.png",
+    },
+    {
+      name: "shawarma",
+      imageUrl: "/shawarma.png",
+    },
+    {
+      name: "bbq",
+      imageUrl: "/grilling.png",
+    },
   ];
 
   const dispatch = useDispatch();

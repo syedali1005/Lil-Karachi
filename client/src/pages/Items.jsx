@@ -156,6 +156,9 @@ const Item = () => {
                 <Select.Option value="drinks">Drinks</Select.Option>
                 <Select.Option value="rice">Rice</Select.Option>
                 <Select.Option value="noodles">Noodles</Select.Option>
+                <Select.Option value="paratha">Paratha</Select.Option>
+                <Select.Option value="shawarma">Shawarma</Select.Option>
+                <Select.Option value="bbq">BBQ</Select.Option>
               </Select>
             </Form.Item>
 
