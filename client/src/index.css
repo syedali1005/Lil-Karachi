@@ -19,7 +19,7 @@ body {
   align-items: center;
   border: none;
   border-radius: 12px;
-  padding: 10px 20px;
+  padding: 30px 20px;
   background-color: #ffffff;
   color: #333;
   cursor: pointer;
@@ -54,6 +54,8 @@ body {
 
 .ant-btn {
   border-radius: 12px;
+  margin-top: 15px;
+  
 }
 
 /* Responsive styles */

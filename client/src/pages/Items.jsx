@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import { useDispatch } from "react-redux";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
@@ -27,10 +27,11 @@ const Item = () => {
   useEffect(() => {
     getAllItems();
   }, [getAllItems]);
+
   const handleDelete = async (record) => {
     try {
       dispatch({ type: "SHOW_LOADING" });
-      await axios.post("/api/items/delete-item", { itemId: record._id });
+      await axios.delete(`/api/items/delete-item/${record._id}`);
       message.success("Item Deleted Successfully");
       getAllItems();
     } catch (error) {
@@ -78,10 +79,14 @@ const Item = () => {
       ? "/api/items/edit-item"
       : "/api/items/add-item";
     const payload = editItem ? { ...values, itemId: editItem._id } : values;
-
+  
     try {
       dispatch({ type: "SHOW_LOADING" });
-      await axios.post(apiEndpoint, payload);
+      if (editItem) {
+        await axios.put(apiEndpoint, payload); // PUT for edit
+      } else {
+        await axios.post(apiEndpoint, payload); // POST for add
+      }
       message.success(`Item ${editItem ? "Updated" : "Added"} Successfully`);
       getAllItems();
     } catch (error) {
@@ -154,11 +159,13 @@ const Item = () => {
             >
               <Select>
                 <Select.Option value="drinks">Drinks</Select.Option>
-                <Select.Option value="rice">Rice</Select.Option>
-                <Select.Option value="noodles">Noodles</Select.Option>
                 <Select.Option value="paratha">Paratha</Select.Option>
                 <Select.Option value="shawarma">Shawarma</Select.Option>
                 <Select.Option value="bbq">BBQ</Select.Option>
+                <Select.Option value="burger">Burger</Select.Option>
+                <Select.Option value="pizza">Pizza</Select.Option>
+                <Select.Option value="roll">Roll</Select.Option>
+                <Select.Option value="fries">Fries</Select.Option>
               </Select>
             </Form.Item>
 

@@ -40,10 +40,10 @@ export const editItemController = async (req, res) => {
 //delete item
 export const deleteItemController = async (req, res) => {
   try {
-    const { itemId } = req.body;
+    const { itemId } = req.params;
     console.log(itemId);
     await Items.findOneAndDelete({ _id: itemId });
-    res.status(200).json("item Deleted");
+    res.status(200).json("Item Deleted");
   } catch (error) {
     res.status(400).send(error);
     console.log(error);

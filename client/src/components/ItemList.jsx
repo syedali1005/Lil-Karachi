@@ -1,15 +1,18 @@
-import React from "react";
-import { Button, Card } from "antd";
-import { useDispatch } from "react-redux";
+import PropTypes from 'prop-types';
+import { Button, Card } from 'antd';
+import { useDispatch } from 'react-redux';
+
 const ItemList = ({ item }) => {
   const dispatch = useDispatch();
-  //update cart handler
-  const handleAddTOCart = () => {
+
+  // Update cart handler
+  const handleAddToCart = () => {
     dispatch({
-      type: "ADD_TO_CART",
+      type: 'ADD_TO_CART',
       payload: { ...item, quantity: 1 },
     });
   };
+
   const { Meta } = Card;
   return (
     <div>
@@ -19,11 +22,18 @@ const ItemList = ({ item }) => {
       >
         <Meta title={item.name} />
         <div className="item-button">
-          <Button onClick={() => handleAddTOCart()}>Add to cart</Button>
+          <Button onClick={handleAddToCart}>Add to cart</Button>
         </div>
       </Card>
     </div>
   );
+};
+
+ItemList.propTypes = {
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default ItemList;

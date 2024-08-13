@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DefaultLayout from "./../components/DefaultLayout";
 import axios from "axios";
 import { Row, Col, Button, Typography, Image } from "antd";
@@ -17,14 +17,6 @@ const Home = () => {
       imageUrl: "https://cdn-icons-png.flaticon.com/512/430/430561.png",
     },
     {
-      name: "rice",
-      imageUrl: "https://cdn-icons-png.flaticon.com/512/3174/3174880.png",
-    },
-    {
-      name: "noodles",
-      imageUrl: "https://cdn-icons-png.flaticon.com/512/1471/1471262.png",
-    },
-    {
       name: "paratha",
       imageUrl: "/roti-canai.png",
     },
@@ -35,6 +27,22 @@ const Home = () => {
     {
       name: "bbq",
       imageUrl: "/grilling.png",
+    },
+    {
+      name: "burger",
+      imageUrl: "/burger.png",
+    },
+    {
+      name: "pizza",
+      imageUrl: "/pizza.png",
+    },
+    {
+      name: "roll",
+      imageUrl: "/spring-rolls.png",
+    },
+    {
+      name: "fries",
+      imageUrl: "/fried-potatoes.png",
     },
   ];
 

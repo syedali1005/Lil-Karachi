@@ -8,17 +8,17 @@ import {
 
 const router = express.Router();
 
-//routes
-//Method - get
+// Routes
+// Method - GET
 router.get("/get-item", getItemController);
 
-//Method - post
+// Method - POST
 router.post("/add-item", addItemController);
 
-//method - PUT
+// Method - PUT
 router.put("/edit-item", editItemController);
 
-//method - DELETE
-router.post("/delete-item", deleteItemController);
+// Method - DELETE
+router.delete("/delete-item/:itemId", deleteItemController);
 
 export default router;

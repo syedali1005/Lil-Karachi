@@ -82,8 +82,14 @@
     display: flex;
     align-items: center;
     margin-left: 10px;
+
   }
-  
+    .carticon1{
+      margin-top: -35px !important;
+      margin-left: -5px !important;
+      margin-bottom: 12px !important;
+    }
+
   .ant-layout-header {
     line-height: 0;
     display: flex;
@@ -102,3 +108,20 @@
     font-weight: bold;
   }
   
+  .ant-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .ant-card-body h3,
+  .ant-card-body button {
+    margin: 10px; /* Adjust margin as needed */
+  }
+.ant-row{
+  margin-top: 4em !important;
+}  
+
+.ant-table-wrapper{
+  margin-top: 10px;
+}

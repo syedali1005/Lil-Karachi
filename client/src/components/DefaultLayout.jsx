@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Layout, Menu } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { Layout, Menu } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -11,9 +12,10 @@ import {
   CopyOutlined,
   UnorderedListOutlined,
   ShoppingCartOutlined,
-} from "@ant-design/icons";
-import "../styles/DefaultLayout.css";
-import Spinner from "./Spinner";
+} from '@ant-design/icons';
+import '../styles/DefaultLayout.css';
+import Spinner from './Spinner';
+
 const { Header, Sider, Content } = Layout;
 
 const DefaultLayout = ({ children }) => {
@@ -27,37 +29,37 @@ const DefaultLayout = ({ children }) => {
 
   // to get localstorage data
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
 
   const menuItems = [
     {
-      key: "/",
+      key: '/',
       icon: <HomeOutlined />,
       label: <Link to="/">Home</Link>,
     },
     {
-      key: "/bills",
+      key: '/bills',
       icon: <CopyOutlined />,
       label: <Link to="/bills">Bills</Link>,
     },
     {
-      key: "/items",
+      key: '/items',
       icon: <UnorderedListOutlined />,
       label: <Link to="/items">Items</Link>,
     },
     {
-      key: "/customers",
+      key: '/customers',
       icon: <UserOutlined />,
       label: <Link to="/customers">Customers</Link>,
     },
     {
-      key: "/logout",
+      key: '/logout',
       icon: <LogoutOutlined />,
-      label: "Logout",
+      label: 'Logout',
       onClick: () => {
-        localStorage.removeItem("auth");
-        navigate("/login");
+        localStorage.removeItem('auth');
+        navigate('/login');
       },
     },
   ];
@@ -67,7 +69,7 @@ const DefaultLayout = ({ children }) => {
       {loading && <Spinner />}
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
-          <img 
+          <img
             src="/02.png" // Replace with your image path
             alt="Logo"
             style={{ width: '100%', height: 'auto', padding: '16px' }} // Adjust styles as needed
@@ -82,25 +84,22 @@ const DefaultLayout = ({ children }) => {
       </Sider>
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }}>
-          {React.createElement(
-            collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-            {
-              className: "trigger",
-              onClick: toggle,
-            }
-          )}
+          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            className: 'trigger',
+            onClick: toggle,
+          })}
           <div
             className="cart-item d-flex justify-content-space-between flex-row"
-            onClick={() => navigate("/cart")}
+            onClick={() => navigate('/cart')}
           >
             <p>{cartItems.length}</p>
-            <ShoppingCartOutlined />
+            <ShoppingCartOutlined className="carticon1" />
           </div>
         </Header>
         <Content
           className="site-layout-background"
           style={{
-            margin: "24px 16px",
+            margin: '24px 16px',
             padding: 24,
             minHeight: 280,
           }}
@@ -110,6 +109,10 @@ const DefaultLayout = ({ children }) => {
       </Layout>
     </Layout>
   );
+};
+
+DefaultLayout.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default DefaultLayout;
