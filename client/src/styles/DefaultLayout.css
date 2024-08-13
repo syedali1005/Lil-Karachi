@@ -39,6 +39,19 @@
     padding-top: 10px !important;
     background-color: #731051 !important; /* Updated color for the Sider */
   }
+
+  @media (max-width: 768px) {
+    .site-layout {
+      flex-direction: column;
+    }
+    .ant-layout-sider {
+      width: 100%;
+      padding-top: 0 !important;
+    }
+    .ant-layout-sider .ant-menu {
+      margin: 0;
+    }
+  }
   
   /* Menu styles inside Sider */
   .ant-menu {
@@ -101,6 +114,7 @@
     padding-left: 20px;
     padding-right: 30px;
     cursor: pointer;
+    margin-bottom: 20px; /* Add margin bottom to prevent overlapping */
   }
   
   .cart-item p {
@@ -124,4 +138,10 @@
 
 .ant-table-wrapper{
   margin-top: 10px;
+}
+
+@media (max-width: 767px) {
+  .ant-col-xs-24 {
+    margin-bottom: 20px; /* Add margin bottom to prevent overlapping */
+  }
 }

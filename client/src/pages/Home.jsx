@@ -92,8 +92,8 @@ const Home = () => {
         {itemsData
           .filter((i) => i.category === selectedCategory)
           .map((item) => (
-            <Col key={item._id} xs={24} sm={12} md={8} lg={6}>
-              <ItemList item={item} />
+            <Col key={item._id} xs={24} sm={12} md={8} lg={6} marginBottom={20}>
+              <ItemList item={item} style={{ margin: 20 }} />
             </Col>
           ))}
       </Row>

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #f9f9f9;
   margin: 0;
   padding: 0;
@@ -25,7 +25,14 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 5px;
+  margin: 10px; /* Add margin to prevent overlapping */
+}
+
+@media (max-width: 767px) {
+  .category-button {
+    width: 100%;
+    margin: 10px 0;
+  }
 }
 
 .category-button-active {
@@ -45,6 +52,7 @@ body {
   background: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+  margin: 20px; /* Add margin to prevent overlapping */
 }
 
 .item-list:hover {
@@ -55,7 +63,6 @@ body {
 .ant-btn {
   border-radius: 12px;
   margin-top: 15px;
-  
 }
 
 /* Responsive styles */
@@ -64,7 +71,7 @@ body {
     width: 100%;
     margin: 10px 0;
   }
-  
+
   .item-list {
     margin: 0 auto;
   }
