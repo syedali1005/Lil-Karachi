@@ -33,6 +33,7 @@ ItemList.propTypes = {
   item: PropTypes.shape({
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    size: PropTypes.string,  // Optional, define according to your data model
   }).isRequired,
 };
 
