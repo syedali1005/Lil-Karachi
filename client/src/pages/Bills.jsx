@@ -37,8 +37,8 @@ const Bills = () => {
 
   const columns = [
     { title: "ID", dataIndex: "_id", key: "_id" },
-    { title: "Customer Name", dataIndex: "customerName", key: "customerName" },
-    { title: "Contact No", dataIndex: "customerNumber", key: "customerNumber" },
+    { title: "Cashier Name", dataIndex: "cashierName", key: "cashierName" },
+    { title: "Table Number", dataIndex: "tableNumber", key: "tableNumber" },
     { title: "Subtotal", dataIndex: "subTotal", key: "subTotal" },
     { title: "Tax", dataIndex: "tax", key: "tax" },
     { title: "Total Amount", dataIndex: "totalAmount", key: "totalAmount" },
@@ -89,9 +89,13 @@ const Bills = () => {
             <div id="mid">
               <div className="mt-2">
                 <p>
-                  Customer Name: <b>{selectedBill.customerName}</b>
+                  Invoice Number: <b>{selectedBill.invoiceNumber}</b>
                   <br />
-                  Table No: <b>{selectedBill.customerNumber}</b>
+                  Cashier Name: <b>{selectedBill.cashierName}</b>
+                  <br />
+                  Table Number: <b>{selectedBill.tableNumber}</b>
+                  <br />
+                  Order Type: <b>{selectedBill.orderType}</b>
                   <br />
                   Date:{" "}
                   <b>{new Date(selectedBill.date).toLocaleDateString()}</b>

@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -9,20 +9,24 @@ import {
   MinusCircleOutlined,
 } from "@ant-design/icons";
 import { Table, Button, Modal, message, Form, Input, Select } from "antd";
+
 const Cart = () => {
   const [subTotal, setSubTotal] = useState(0);
   const [billPopup, setBillPopup] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cartItems } = useSelector((state) => state.rootReducer);
-  //handle increament
-  const handleIncreament = (record) => {
+
+  // Handle increment
+  const handleIncrement = (record) => {
     dispatch({
       type: "UPDATE_CART",
       payload: { ...record, quantity: record.quantity + 1 },
     });
   };
-  const handleDecreament = (record) => {
+
+  // Handle decrement
+  const handleDecrement = (record) => {
     if (record.quantity !== 1) {
       dispatch({
         type: "UPDATE_CART",
@@ -30,6 +34,7 @@ const Cart = () => {
       });
     }
   };
+
   const columns = [
     { title: "Name", dataIndex: "name" },
     {
@@ -48,13 +53,13 @@ const Cart = () => {
           <PlusCircleOutlined
             className="mx-3"
             style={{ cursor: "pointer" }}
-            onClick={() => handleIncreament(record)}
+            onClick={() => handleIncrement(record)}
           />
           <b>{record.quantity}</b>
           <MinusCircleOutlined
             className="mx-3"
             style={{ cursor: "pointer" }}
-            onClick={() => handleDecreament(record)}
+            onClick={() => handleDecrement(record)}
           />
         </div>
       ),
@@ -82,7 +87,7 @@ const Cart = () => {
     setSubTotal(temp);
   }, [cartItems]);
 
-  //handleSubmit
+  // Handle submit
   const handleSubmit = async (value) => {
     try {
       const newObject = {
@@ -95,15 +100,29 @@ const Cart = () => {
         ),
         userId: JSON.parse(localStorage.getItem("auth"))._id,
       };
-      // console.log(newObject);
       await axios.post("/api/bills/add-bills", newObject);
       message.success("Bill Generated");
+      dispatch({ type: "CLEAR_CART" }); // Clear the cart after generating the bill
       navigate("/bills");
     } catch (error) {
       message.error("Something went wrong");
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const handleNavigation = () => {
+      if (window.location.pathname === "/") {
+        dispatch({ type: "CLEAR_CART" });
+      }
+    };
+
+    window.addEventListener("popstate", handleNavigation);
+
+    return () => {
+      window.removeEventListener("popstate", handleNavigation);
+    };
+  }, [dispatch]);
 
   return (
     <DefaultLayout>
@@ -112,7 +131,7 @@ const Cart = () => {
       <div className="d-flex flex-column align-items-end">
         <hr />
         <h3>
-          SUBT TOTAL : Rs<b> {subTotal}</b> /-{" "}
+          SUB TOTAL : Rs<b> {subTotal}</b> /-{" "}
         </h3>
         <Button type="primary" onClick={() => setBillPopup(true)}>
           Create Invoice
@@ -125,11 +144,11 @@ const Cart = () => {
         footer={false}
       >
         <Form layout="vertical" onFinish={handleSubmit}>
-          <Form.Item name="customerName" label="Customer Name">
+          <Form.Item name="cashierName" label="Cashier Name">
             <Input />
           </Form.Item>
-          <Form.Item name="customerNumber" label="Contact Number">
-            <Input />
+          <Form.Item name="tableNumber" label="Table Number">
+            <Input type="number" />
           </Form.Item>
 
           <Form.Item name="paymentMode" label="Payment Method">
@@ -138,6 +157,21 @@ const Cart = () => {
               <Select.Option value="card">Card</Select.Option>
             </Select>
           </Form.Item>
+          <Form.Item
+            name="orderType"
+            label="Order Type"
+            rules={[
+              { required: true, message: "Please select an order type!" },
+            ]}
+          >
+            <Select>
+              <Select.Option value="take away">Take Away</Select.Option>
+              <Select.Option value="dine in">Dine In</Select.Option>
+              <Select.Option value="self-delivery">Self-Delivery</Select.Option>
+              <Select.Option value="foodpanda">FoodPanda</Select.Option>
+            </Select>
+          </Form.Item>
+
           <div className="bill-it">
             <h5>
               Sub Total : <b>{subTotal}</b>

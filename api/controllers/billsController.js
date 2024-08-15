@@ -3,22 +3,32 @@ import Bills from "../models/billsModel.js";
 // Add a new bill
 export const addBillsController = async (req, res) => {
   try {
-    const newBill = new Bills(req.body);
+    const lastBill = await Bills.findOne().sort({ invoiceNumber: -1 });
+    const newInvoiceNumber = lastBill?.invoiceNumber != null ? lastBill.invoiceNumber + 1 : 1;
+
+    const newBill = new Bills({
+      ...req.body,
+      invoiceNumber: newInvoiceNumber,
+    });
+
     await newBill.save();
     res.send("Bill Created Successfully!");
   } catch (error) {
-    res.send("Something went wrong");
-    console.log(error);
+    console.error(error);
+    res.status(500).send("Something went wrong");
   }
 };
 
 // Get all bills data
 export const getBillsController = async (req, res) => {
   try {
-    const bills = await Bills.find(); // Use 'Bills' instead of 'billsModel'
+    // Fetch all bills from the database
+    const bills = await Bills.find();
+    
+    // Send the bills as the response
     res.send(bills);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send("Failed to fetch bills");
   }
 };

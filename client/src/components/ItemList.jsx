@@ -21,6 +21,9 @@ const ItemList = ({ item }) => {
         cover={<img alt={item.name} src={item.image} style={{ height: 200 }} />}
       >
         <Meta title={item.name} />
+        <div style={{ marginTop: 10 }}>
+          <p>Price: {item.price.toFixed(1)} Rs </p> {/* Display price here */}
+        </div>
         <div className="item-button">
           <Button onClick={handleAddToCart}>Add to cart</Button>
         </div>
@@ -33,7 +36,7 @@ ItemList.propTypes = {
   item: PropTypes.shape({
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    size: PropTypes.string,  // Optional, define according to your data model
+    price: PropTypes.number.isRequired,  // Add price prop type
   }).isRequired,
 };
 

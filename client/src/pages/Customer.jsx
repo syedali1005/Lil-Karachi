@@ -29,10 +29,10 @@ const Cutomer = () => {
   const columns = [
     { title: "ID ", dataIndex: "_id" },
     {
-      title: "Cutomer Name",
-      dataIndex: "customerName",
+      title: "Cashier Name",
+      dataIndex: "cashierName",
     },
-    { title: "Contact No", dataIndex: "customerNumber" },
+    { title: "Table No", dataIndex: "tableNumber" },
   ];
 
   return (

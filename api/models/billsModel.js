@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const billSchema = mongoose.Schema(
   {
-    customerName: {
+    cashierName: {
       type: String,
       required: true,
     },
-    customerNumber: {
+    tableNumber: {
       type: Number,
       required: true,
     },
@@ -32,12 +32,22 @@ const billSchema = mongoose.Schema(
     },
     date: {
       type: Date,
-      default: Date.now, 
+      default: Date.now,
+    },
+    invoiceNumber: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
+    orderType: {
+      type: String,
+      required: true,
+      enum: ['take away', 'dine in', 'self-delivery', 'foodpanda'],
     },
   },
-  { timestamps: true } 
+  { timestamps: true }
 );
 
-const Bills = mongoose.model("Bills", billSchema); 
+const Bills = mongoose.model("Bills", billSchema);
 
 export default Bills;
