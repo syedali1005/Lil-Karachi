@@ -166,6 +166,8 @@ const Item = () => {
                 <Select.Option value="pizza">Pizza</Select.Option>
                 <Select.Option value="roll">Roll</Select.Option>
                 <Select.Option value="fries">Fries</Select.Option>
+                <Select.Option value="desserts">Desserts</Select.Option>
+
               </Select>
             </Form.Item>
 

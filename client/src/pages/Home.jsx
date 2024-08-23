@@ -44,6 +44,10 @@ const Home = () => {
       name: "fries",
       imageUrl: "/fried-potatoes.png",
     },
+    {
+      name: "desserts",
+      imageUrl: "/gelato.png",
+    },
   ];
 
   const dispatch = useDispatch();
