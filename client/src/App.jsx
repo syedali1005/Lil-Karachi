@@ -6,7 +6,7 @@ import Item from "./pages/Items";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Bills from "./pages/Bills";
-import Customer from "./pages/Customer";
+import SoldItems from "./pages/SoldItems";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
@@ -47,10 +47,10 @@ function App() {
             }
           />
           <Route
-            path="/customers"
+            path="/solditems"
             element={
               <ProtectedRoute>
-                <Customer />
+                <SoldItems />
               </ProtectedRoute>
             }
           />

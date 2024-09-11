@@ -144,10 +144,20 @@ const Bills = () => {
                       <td />
                       <td />
                       <td className="Rate">
+                        <h2>Discount</h2>
+                      </td>
+                      <td className="payment">
+                        <h2>{selectedBill.discount || 0} %</h2>
+                      </td>
+                    </tr>
+                    <tr className="tabletitle">
+                      <td />
+                      <td />
+                      <td className="Rate">
                         <h2>Tax</h2>
                       </td>
                       <td className="payment">
-                        <h2>Rs{selectedBill.tax}</h2>
+                        <h2>Rs {selectedBill.tax}</h2>
                       </td>
                     </tr>
                     <tr className="tabletitle">
@@ -158,7 +168,7 @@ const Bills = () => {
                       </td>
                       <td className="payment">
                         <h2>
-                          <b>Rs{selectedBill.totalAmount}</b>
+                          <b>Rs {selectedBill.totalAmount}</b>
                         </h2>
                       </td>
                     </tr>

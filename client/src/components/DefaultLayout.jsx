@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  UserOutlined,
+  FormOutlined,
   LogoutOutlined,
   HomeOutlined,
   CopyOutlined,
@@ -49,9 +49,9 @@ const DefaultLayout = ({ children }) => {
       label: <Link to="/items">Items</Link>,
     },
     {
-      key: '/customers',
-      icon: <UserOutlined />,
-      label: <Link to="/customers">Customers</Link>,
+      key: '/solditems',
+      icon: <FormOutlined />,
+      label: <Link to="/solditems">Sold Items</Link>,
     },
     {
       key: '/logout',

@@ -13,9 +13,11 @@ import { Table, Button, Modal, message, Form, Input, Select } from "antd";
 const Cart = () => {
   const [subTotal, setSubTotal] = useState(0);
   const [billPopup, setBillPopup] = useState(false);
+  const [discount, setDiscount] = useState(0); // New state for discount
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cartItems } = useSelector((state) => state.rootReducer);
+
 
   // Handle increment
   const handleIncrement = (record) => {
@@ -94,10 +96,11 @@ const Cart = () => {
         ...value,
         cartItems,
         subTotal,
+        discount, // Include discount in the request
         tax: Number(((subTotal / 100) * 10).toFixed(2)),
         totalAmount: Number(
-          Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))
-        ),
+          (subTotal - (subTotal * (discount / 100))) + Number(((subTotal / 100) * 10).toFixed(2))
+        ), // Calculate total with discount
         userId: JSON.parse(localStorage.getItem("auth"))._id,
       };
       await axios.post("/api/bills/add-bills", newObject);
@@ -131,7 +134,7 @@ const Cart = () => {
       <div className="d-flex flex-column align-items-end">
         <hr />
         <h3>
-          SUB TOTAL : Rs<b> {subTotal}</b> /-{" "}
+          SUB TOTAL : Rs<b> {subTotal}</b> /-
         </h3>
         <Button type="primary" onClick={() => setBillPopup(true)}>
           Create Invoice
@@ -172,6 +175,16 @@ const Cart = () => {
             </Select>
           </Form.Item>
 
+          {/* New Discount Field */}
+          <Form.Item name="discount" label="Discount (%)">
+            <Input
+              type="number"
+              min={0}
+              max={100}
+              onChange={(e) => setDiscount(e.target.value)}
+            />
+          </Form.Item>
+
           <div className="bill-it">
             <h5>
               Sub Total : <b>{subTotal}</b>
@@ -180,10 +193,16 @@ const Cart = () => {
               TAX
               <b> {((subTotal / 100) * 10).toFixed(2)}</b>
             </h4>
+            <h4>
+              Discount: <b>{discount}%</b>
+            </h4>
             <h3>
               GRAND TOTAL -{" "}
               <b>
-                {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}
+                {Number(
+                  subTotal - (subTotal * (discount / 100)) +
+                  Number(((subTotal / 100) * 10).toFixed(2))
+                )}
               </b>
             </h3>
           </div>

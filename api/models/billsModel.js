@@ -22,6 +22,10 @@ const billSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+    discount: {
+      type: Number,
+      default: 0, // Default discount is 0
+    },
     paymentMode: {
       type: String,
       required: true,

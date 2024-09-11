@@ -1,15 +1,17 @@
 import express from "express";
-import { addBillsController, getBillsController,
+import {
+  addBillsController,
+  getBillsController,
+  getSoldItemsSummaryController,
 } from "../controllers/billsController.js";
 
 const router = express.Router();
 
-//routes
-
-//Method - POST
+// Existing routes...
 router.post("/add-bills", addBillsController);
-
-//Method - GET
 router.get("/get-bills", getBillsController);
+
+// New route to get sold items summary
+router.get("/get-sold-items-summary", getSoldItemsSummaryController);
 
 export default router;
